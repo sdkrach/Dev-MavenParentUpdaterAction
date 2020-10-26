@@ -28,7 +28,7 @@ async function run(): Promise<void> {
         `Update parent from ${artifact.version} to ${mostRecent.release}`
       )
 
-      updateParentVersion(pomDocument, {
+      await updateParentVersion(pomDocument, {
         groupId: artifact.groupId,
         artifactId: artifact.artifactId,
         version: mostRecent.release

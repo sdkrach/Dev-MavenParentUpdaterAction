@@ -58,7 +58,7 @@ function run() {
                 : 'https://repo1.maven.org/maven2/');
             if (semver_1.gt(mostRecent.release, artifact.version)) {
                 core.info(`Update parent from ${artifact.version} to ${mostRecent.release}`);
-                pomHandling_1.updateParentVersion(pomDocument, {
+                yield pomHandling_1.updateParentVersion(pomDocument, {
                     groupId: artifact.groupId,
                     artifactId: artifact.artifactId,
                     version: mostRecent.release
