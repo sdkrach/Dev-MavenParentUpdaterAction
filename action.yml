@@ -1,11 +1,15 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Maven Parent Updater Action'
+description: 'This action allows to sync the version of a Maven Root POM with the current version on Maven Central'
+author: 'Sebastian Krach'
 inputs:
-  milliseconds: # change this
-    required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+  root_pom_filename:
+    required: false
+    description: 'the file name of the root pom of the project'
+    default: 'pom.xml'
+  maven_repository:
+    required: false
+    description: 'The Base URL of the Maven repository to check the latest release version of the parent pom'
+    default: 'https://repo1.maven.org/maven2/'
 runs:
   using: 'node12'
   main: 'dist/index.js'

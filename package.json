@@ -1,8 +1,7 @@
 {
-  "name": "typescript-action",
-  "version": "0.0.0",
-  "private": true,
-  "description": "TypeScript template action",
+  "name": "maven-parent-updater-action",
+  "version": "0.1.0",
+  "description": "Maven Parent Updater Action",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
@@ -15,22 +14,30 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/sdkrach/Dev-MavenParentUpdaterAction.git"
   },
-  "keywords": [
-    "actions",
-    "node",
-    "setup"
-  ],
-  "author": "",
+  "author": "Sebastian Krach",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sdkrach/Dev-MavenParentUpdaterAction/issues"
+  },
+  "homepage": "https://github.com/sdkrach/Dev-MavenParentUpdaterAction#readme",
   "dependencies": {
-    "@actions/core": "^1.2.6"
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0",
+    "node-fetch": "^2.6.1",
+    "semver": "^6.3.0",
+    "xmldom": "^0.3.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.10",
     "@types/node": "^14.10.0",
-    "@typescript-eslint/parser": "^3.10.1",
+    "@types/node-fetch": "^2.5.7",
+    "@types/semver": "^7.3.4",
+    "@types/xml2json": "^0.11.3",
+    "@types/xmldom": "^0.1.30",
+    "@typescript-eslint/eslint-plugin": "^4.5.0",
+    "@typescript-eslint/parser": "^4.5.0",
     "@vercel/ncc": "^0.23.0",
     "eslint": "^7.8.1",
     "eslint-plugin-github": "^4.1.1",
@@ -40,6 +47,6 @@
     "js-yaml": "^3.14.0",
     "prettier": "2.1.1",
     "ts-jest": "^24.3.0",
-    "typescript": "^4.0.2"
+    "typescript": "^4.0.3"
   }
 }
