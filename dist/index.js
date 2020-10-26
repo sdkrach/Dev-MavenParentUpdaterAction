@@ -57,12 +57,18 @@ function run() {
                 ? mavenRepo
                 : 'https://repo1.maven.org/maven2/');
             if (semver_1.gt(mostRecent.release, artifact.version)) {
+                core.info(`Update parent from ${artifact.version} to ${mostRecent.release}`);
                 const newArtifact = {
                     groupId: artifact.groupId,
                     artifactId: artifact.artifactId,
                     version: mostRecent.release
                 };
                 pomHandling_1.updateParentVersion(pomDocument, newArtifact);
+                const serializedPom = new xmldom_1.XMLSerializer().serializeToString(pomDocument);
+                fs_1.default.writeFileSync(pomName !== null || pomName !== undefined ? pomName : 'pom.xml', serializedPom);
+            }
+            else {
+                core.info(`Skipping. Parent is already refering to the latest version: ${artifact.version}`);
             }
         }
         catch (error) {

@@ -1,6 +1,6 @@
 import * as core from '@actions/core'
 import fs from 'fs'
-import {DOMParser} from 'xmldom'
+import {DOMParser, XMLSerializer} from 'xmldom'
 import {gt} from 'semver'
 import {readArtifact, updateParentVersion, ParentArtifact} from './pomHandling'
 import {queryArtifactVersion} from './queryArtifactVersion'
@@ -24,12 +24,25 @@ async function run(): Promise<void> {
         : 'https://repo1.maven.org/maven2/'
     )
     if (gt(mostRecent.release, artifact.version)) {
+      core.info(
+        `Update parent from ${artifact.version} to ${mostRecent.release}`
+      )
       const newArtifact: ParentArtifact = {
         groupId: artifact.groupId,
         artifactId: artifact.artifactId,
         version: mostRecent.release
       }
       updateParentVersion(pomDocument, newArtifact)
+
+      const serializedPom = new XMLSerializer().serializeToString(pomDocument)
+      fs.writeFileSync(
+        pomName !== null || pomName !== undefined ? pomName : 'pom.xml',
+        serializedPom
+      )
+    } else {
+      core.info(
+        `Skipping. Parent is already refering to the latest version: ${artifact.version}`
+      )
     }
   } catch (error) {
     core.setFailed(error.message)
