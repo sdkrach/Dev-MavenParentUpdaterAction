@@ -21,4 +21,4 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ./
         with:
-          milliseconds: 1000
+          root_pom_filename: tests/pom-test.xml
