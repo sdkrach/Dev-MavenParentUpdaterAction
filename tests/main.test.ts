@@ -74,5 +74,6 @@ test('test update pom file', async () => {
 
   const result = new XMLSerializer().serializeToString(doc)
   const expected = fs.readFileSync('tests/pom-test-updated.xml')
+
   expect(result).toEqual(expected.toString('utf8'))
 })

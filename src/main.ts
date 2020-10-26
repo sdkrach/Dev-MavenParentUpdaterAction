@@ -2,7 +2,7 @@ import * as core from '@actions/core'
 import fs from 'fs'
 import {DOMParser, XMLSerializer} from 'xmldom'
 import {gt} from 'semver'
-import {readArtifact, updateParentVersion, ParentArtifact} from './pomHandling'
+import {readArtifact, updateParentVersion} from './pomHandling'
 import {queryArtifactVersion} from './queryArtifactVersion'
 
 async function run(): Promise<void> {
@@ -27,14 +27,15 @@ async function run(): Promise<void> {
       core.info(
         `Update parent from ${artifact.version} to ${mostRecent.release}`
       )
-      const newArtifact: ParentArtifact = {
+
+      updateParentVersion(pomDocument, {
         groupId: artifact.groupId,
         artifactId: artifact.artifactId,
         version: mostRecent.release
-      }
-      updateParentVersion(pomDocument, newArtifact)
+      })
 
       const serializedPom = new XMLSerializer().serializeToString(pomDocument)
+      core.debug(`Write out: ${serializedPom}`)
       fs.writeFileSync(
         pomName !== null || pomName !== undefined ? pomName : 'pom.xml',
         serializedPom
