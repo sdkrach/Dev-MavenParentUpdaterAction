@@ -27,7 +27,7 @@
     "@actions/github": "^4.0.0",
     "node-fetch": "^2.6.1",
     "semver": "^7.3.2",
-    "xmldom": "^0.3.0"
+    "xmldom": "^0.4.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.10",
