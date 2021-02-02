@@ -36,7 +36,7 @@
     "@types/semver": "^7.3.4",
     "@types/xml2json": "^0.11.3",
     "@types/xmldom": "^0.1.30",
-    "@typescript-eslint/eslint-plugin": "^4.5.0",
+    "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.5.0",
     "@vercel/ncc": "^0.24.1",
     "eslint": "^7.10.0",
